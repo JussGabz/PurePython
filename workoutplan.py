@@ -18,3 +18,12 @@ class WorkoutPlan:
     
     def get_date_created(self):
         return self.date_created
+    
+    def add_exercise(self, exercise):
+        if self.get_exercises is None:
+            if isinstance(exercise, list):
+                self.exercises = exercise
+            else:
+                self.exercises = [exercise]
+        self.exercises.append(exercise)
+        return self.exercises
