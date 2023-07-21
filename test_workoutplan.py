@@ -4,7 +4,7 @@ import pytest
 
 @pytest.fixture
 def new_exercise():
-    new_exercise = Exercise(name="New Exercise", target_area="New Target Area")
+    new_exercise = Exercise(name="New Exercise", target_area="New Target Area", difficulty="Hard")
     return new_exercise
 
 @pytest.fixture
