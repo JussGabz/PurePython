@@ -69,13 +69,13 @@ def database():
         print(f"Error: {e}")
 
 
-def insert_command(name, target_area, difficulty):
+def generate_exercise_insert_cmd(name:str, target_area:str, difficulty:str):
     sql_command = f"INSERT INTO exercise (name, target_area, difficulty) values ('{name}', '{target_area}', '{difficulty}')"
     return sql_command
     
 def insert(name:str , target_area:str, difficulty:str):
 
-    sql_command = f"INSERT INTO exercise (name, target_area, difficulty) values ('{name}', '{target_area}', '{difficulty}')"
+    sql_command = generate_exercise_insert_cmd(name, target_area, difficulty)
 
     # Connect Database
     try:
