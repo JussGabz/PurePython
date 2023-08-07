@@ -1,4 +1,4 @@
-from database import insert
+from database import insert, select
 
 class Exercise:
 
@@ -17,9 +17,8 @@ class Exercise:
     def get_target_area(self):
         return self.target_area
     
-    def create_exercise(self):
-        insert(
-            name=self.name,
-            target_area=self.target_area,
-            difficulty=self.difficulty
-        )
+    def save_exercise(self):
+        insert(self.name, self.target_area, self.difficulty)
+
+def retrieve_exercise(name):
+    return select(name)
