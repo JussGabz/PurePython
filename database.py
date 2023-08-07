@@ -73,6 +73,11 @@ def generate_exercise_insert_cmd(name:str, target_area:str, difficulty:str):
     sql_command = f"INSERT INTO exercise (name, target_area, difficulty) values ('{name}', '{target_area}', '{difficulty}')"
     return sql_command
     
+def generate_exercise_select_cmd(name):
+    sql_command = f"SELECT * FROM exercise WHERE name = '{name}'"
+    print(sql_command)
+    return sql_command
+
 def insert(name:str , target_area:str, difficulty:str):
 
     sql_command = generate_exercise_insert_cmd(name, target_area, difficulty)
@@ -86,7 +91,32 @@ def insert(name:str , target_area:str, difficulty:str):
 
         cur.execute(sql_command)
         conn.commit()
+
+        cur.close()
         conn.close()
         print("Data Inserted")
     except OperationalError as e:
         print(f"Error: {e}")
+
+def select(name):
+    sql_command = generate_exercise_select_cmd(name)
+
+        # Connect Database
+    try:
+        conn = psycopg2.connect(
+        database="gymapp", user="postgres", password="admin")
+
+        cur = conn.cursor()
+
+        cur.execute(sql_command)
+        selected_exercise = cur.fetchall()
+
+        cur.close()
+        conn.close()
+        print("Data Selected")
+    except OperationalError as e:
+        print(f"Error: {e}")
+    
+    return selected_exercise
+
+
