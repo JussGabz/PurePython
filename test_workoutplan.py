@@ -13,7 +13,6 @@ def new_workout_plan(new_exercise):
     return new_workout_plan
 
 
-
 def test_workoutplan_name(new_workout_plan):
     assert new_workout_plan.get_workoutplan_name() == "New Workout Plan"
 

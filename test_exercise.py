@@ -10,5 +10,6 @@ def test_get_target_area():
 
 def test_create_exercise():
     # TODO: Test SQL INSERT 
+    
     pass
 
