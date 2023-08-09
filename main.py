@@ -1,8 +1,7 @@
 from database import database
-from exercise import Exercise, retrieve_exercise
+from exercise import Exercise, retrieve_exercise, delete_exercise
 
-# Run Database Setup
-database()
+
 
 def mainmenu():
     response = input("Which option do you want to go for?\n1) Exercise\n2) Workout Plan\nOption: ")
@@ -13,7 +12,6 @@ def mainmenu():
     elif response == '2':
         print("Workout Plan!")
 
-        
 
 def exercise_menu():
     print(
@@ -28,6 +26,8 @@ def exercise_menu():
         create_exercise()
     elif exercise_opt == "2":
         view_exercise()
+    elif exercise_opt == "3":
+        remove_exercise()
 
 
 def workout_plan_menu():
@@ -50,7 +50,7 @@ def create_exercise():
         mainmenu()
 
 def view_exercise():
-    exercise_name = input("What exercise detail do you want? ")
+    exercise_name = input("What exercise do you request? ")
     exercises = retrieve_exercise(exercise_name)
     for exercise in exercises:
         id, name, target_area, difficulty = exercise
@@ -61,15 +61,27 @@ def view_exercise():
         print("Difficulty:", difficulty)
         print("___________________________")
 
+def remove_exercise():
 
-    
+    # search for exercise in database
+    exercise_name = "Chest Press"
+    exercise = retrieve_exercise(exercise_name)
+
+    # If result found in database.. Delete from database
+    if exercise_name:
+        delete_exercise(exercise_name)
+
+
+
+
+
+
+
+
+# Run Database Setup
+database()
 
 mainmenu()
-
-# response = input("Do you want to create an exercise?: ")
-
-# if response == "Y" or "y":
-#     start()
 
 
 

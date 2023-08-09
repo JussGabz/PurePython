@@ -1,4 +1,4 @@
-from database import insert, select
+from database import insert, select, delete
 
 class Exercise:
 
@@ -19,6 +19,12 @@ class Exercise:
     
     def save_exercise(self):
         insert(self.name, self.target_area, self.difficulty)
+    
+
+        
 
 def retrieve_exercise(name):
     return select(name)
+
+def delete_exercise(name):
+    delete(name)
