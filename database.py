@@ -74,8 +74,14 @@ def generate_exercise_insert_cmd(name:str, target_area:str, difficulty:str):
     return sql_command
     
 def generate_exercise_select_cmd(name):
-    sql_command = f"SELECT * FROM exercise WHERE name = '{name}'"
-    print(sql_command)
+    if name != "":
+        sql_command = f"SELECT * FROM exercise WHERE name = '{name}'"
+    else:
+        sql_command = sql_command = f"SELECT * FROM exercise" 
+    return sql_command
+
+def generate_exercise_delete_cmd(name):
+    sql_command = f"DELETE FROM exercise WHERE name = '{name}';"
     return sql_command
 
 def insert(name:str , target_area:str, difficulty:str):
@@ -101,7 +107,7 @@ def insert(name:str , target_area:str, difficulty:str):
 def select(name):
     sql_command = generate_exercise_select_cmd(name)
 
-        # Connect Database
+    # Connect Database
     try:
         conn = psycopg2.connect(
         database="gymapp", user="postgres", password="admin")
@@ -118,5 +124,27 @@ def select(name):
         print(f"Error: {e}")
     
     return selected_exercise
+
+def delete(name):
+    sql_command = generate_exercise_delete_cmd(name)
+
+    # Connect Database
+    try:
+        conn = psycopg2.connect(
+        database="gymapp", user="postgres", password="admin")
+
+        cur = conn.cursor()
+
+        cur.execute(sql_command)
+        conn.commit()
+
+        cur.close()
+        conn.close()
+        print("Data Deleted")
+    except OperationalError as e:
+        print(f"Error: {e}")
+
+
+
 
 
