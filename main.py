@@ -34,6 +34,7 @@ def exercise_menu():
 
 
 def workout_plan_menu():
+    # TODO - Add functionality for WorkOut Plan
     pass
 
 
@@ -85,17 +86,8 @@ def update_exercise():
         if ex:
             change_exercise(exercise_name, new_exercise)
 
-
-
-
-
-
-
-
-
 # Run Database Setup
 database()
-
 mainmenu()
 
 
