@@ -1,5 +1,5 @@
 from database import database
-from exercise import Exercise, retrieve_exercise, delete_exercise
+from exercise import Exercise, retrieve_exercise, delete_exercise, change_exercise
 
 
 
@@ -28,6 +28,9 @@ def exercise_menu():
         view_exercise()
     elif exercise_opt == "3":
         remove_exercise()
+    elif exercise_opt == "4":
+        update_exercise()
+
 
 
 def workout_plan_menu():
@@ -40,7 +43,7 @@ def create_exercise():
     difficulty = input("How difficult is this exercise?: ")
 
     valid = input(
-        f"Is this correct? Exercise: {exercise_name}, Target Area: {target_area}, Difficulty, {difficulty}?"
+        f"Is this correct? Exercise: {exercise_name}, Target Area: {target_area}, Difficulty, {difficulty}? "
     )
     if valid == "Y" or "y":
         print("Confirmed")
@@ -62,14 +65,26 @@ def view_exercise():
         print("___________________________")
 
 def remove_exercise():
-
     # search for exercise in database
-    exercise_name = "Chest Press"
+    exercise_name = input("What exercise do you want to delete? ")
     exercise = retrieve_exercise(exercise_name)
 
     # If result found in database.. Delete from database
-    if exercise_name:
+    if exercise:
         delete_exercise(exercise_name)
+    else:
+        print("No Exercise Found!")
+
+def update_exercise():
+    # Search Exercise in Database exists
+    exercise_name = input("What exercise do you want to update?: ")
+    new_exercise = input("What is the new exercise name you want?: ")
+    exercise = retrieve_exercise(exercise_name)
+
+    for ex in exercise:
+        if ex:
+            change_exercise(exercise_name, new_exercise)
+
 
 
 
