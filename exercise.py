@@ -1,4 +1,4 @@
-from database import insert, select, delete
+from database import insert, select, delete, update
 
 class Exercise:
 
@@ -28,3 +28,7 @@ def retrieve_exercise(name):
 
 def delete_exercise(name):
     delete(name)
+
+def change_exercise(name, new_name):
+    update(name, new_name)
+
